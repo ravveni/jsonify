@@ -45,25 +45,7 @@ func main() {
 	for _, record := range records[1:] { // Skip header row
 		item := make(map[string]any)
 		for j, value := range record {
-			intValue, err := strconv.ParseInt(value, 0, 64) // Check if value is an int
-			if err == nil {
-				item[keys[j]] = intValue
-				continue
-			}
-
-			floatValue, err := strconv.ParseFloat(value, 64) // Check if value is a float
-			if err == nil {
-				item[keys[j]] = floatValue
-				continue
-			}
-
-			boolValue, err := strconv.ParseBool(value) // Check if value is a bool
-			if err == nil {
-				item[keys[j]] = boolValue
-				continue
-			}
-
-			item[keys[j]] = value // Value is a string
+			item[keys[j]] = getTypedValue(value)
 		}
 
 		jsonArray = append(jsonArray, item)
@@ -93,4 +75,32 @@ func main() {
 	}
 
 	fmt.Println("JSON data saved to:", outputFilename)
+}
+
+func getTypedValue(value string) any {
+	intValue, err := strconv.ParseInt(value, 0, 64) // Check if value is an int
+	if err == nil {
+		return intValue
+	}
+
+	floatValue, err := strconv.ParseFloat(value, 64) // Check if value is a float
+	if err == nil {
+		return floatValue
+	}
+
+	boolValue, err := strconv.ParseBool(value) // Check if value is a bool
+	if err == nil {
+		return boolValue
+	}
+
+	commaArray := strings.Split(value, ",")
+	if len(commaArray) > 1 { // Check if value is an array
+		valueArray := []any{}
+		for _, item := range commaArray {
+			valueArray = append(valueArray, getTypedValue(item))
+		}
+		return valueArray
+	}
+
+	return value // Value is a string
 }
