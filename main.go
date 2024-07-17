@@ -6,15 +6,19 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: go run csv_to_json.go input_file.csv")
+		fmt.Println("Usage: go run jsonify input_file.csv")
 		return
 	}
 
 	inputFile := os.Args[1]
+
+	// Copying input filename as output filename
+	outputFilename := strings.Split(inputFile, ".")[0]
 
 	// Open the CSV file for reading
 	csvFile, err := os.Open(inputFile)
@@ -53,5 +57,21 @@ func main() {
 		return
 	}
 
-	io.WriteString(os.Stdout, string(outputJson)) // Write the JSON output to stdout
+	// Create the output file with .json extension
+	outputFilename = outputFilename + ".json"
+	outputFile, err := os.Create(outputFilename)
+	if err != nil {
+		fmt.Println("Error creating output file:", err)
+		return
+	}
+	defer outputFile.Close()
+
+	// Write JSON to the output file
+	_, err = io.WriteString(outputFile, string(outputJson))
+	if err != nil {
+		fmt.Println("Error writing to output file:", err)
+		return
+	}
+
+	fmt.Println("JSON data saved to ", outputFilename)
 }
