@@ -7,8 +7,14 @@
   | |___/\___/|_| |_|_|_|  \__, |
  _/ |                       __/ |
 |__/                       |___/ 
-```
+
 simple csv to json converter
+```
+
+## csv requirements
+converts to basic data types (bool, float, int, string).
+
+array items in the csv file **must** be separated with `|` (ex. `"item_one|item_two"`), as it prevents array assignment with comma-containing strings.
 
 ## usage
 ```

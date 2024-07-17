@@ -93,7 +93,7 @@ func getTypedValue(value string) any {
 		return boolValue
 	}
 
-	commaArray := strings.Split(value, ",")
+	commaArray := strings.Split(value, "|")
 	if len(commaArray) > 1 { // Check if value is an array
 		valueArray := []any{}
 		for _, item := range commaArray {
