@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -40,11 +41,29 @@ func main() {
 	keys := records[0]
 
 	// Convert each row (CSV record) to a map and create an array of maps
-	var jsonArray []map[string]interface{}
+	var jsonArray []map[string]any
 	for _, record := range records[1:] { // Skip header row
-		item := make(map[string]interface{})
+		item := make(map[string]any)
 		for j, value := range record {
-			item[keys[j]] = value
+			intValue, err := strconv.ParseInt(value, 0, 64) // Check if value is an int
+			if err == nil {
+				item[keys[j]] = intValue
+				continue
+			}
+
+			floatValue, err := strconv.ParseFloat(value, 64) // Check if value is a float
+			if err == nil {
+				item[keys[j]] = floatValue
+				continue
+			}
+
+			boolValue, err := strconv.ParseBool(value) // Check if value is a bool
+			if err == nil {
+				item[keys[j]] = boolValue
+				continue
+			}
+
+			item[keys[j]] = value // Value is a string
 		}
 
 		jsonArray = append(jsonArray, item)
@@ -73,5 +92,5 @@ func main() {
 		return
 	}
 
-	fmt.Println("JSON data saved to ", outputFilename)
+	fmt.Println("JSON data saved to:", outputFilename)
 }
