@@ -8,7 +8,7 @@
  _/ |                       __/ |
 |__/                       |___/ 
 
-simple csv to json converter
+a simple csv to json converter
 ```
 
 ## csv requirements
