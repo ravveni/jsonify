@@ -18,7 +18,7 @@ func main() {
 
 	inputFile := os.Args[1]
 
-	// Copying input filename as output filename
+	// Copy input filename as output filename
 	outputFilename := strings.Split(inputFile, ".")[0]
 
 	// Open the CSV file for reading
