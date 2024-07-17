@@ -93,13 +93,13 @@ func getTypedValue(value string) any {
 		return boolValue
 	}
 
-	commaArray := strings.Split(value, "|")
-	if len(commaArray) > 1 { // Check if value is an array
-		valueArray := []any{}
-		for _, item := range commaArray {
-			valueArray = append(valueArray, getTypedValue(item))
+	cellArray := strings.Split(value, "|")
+	if len(cellArray) > 1 { // Check if value is an array
+		cellArrayItems := []any{}
+		for _, item := range cellArray {
+			cellArrayItems = append(cellArrayItems, getTypedValue(item))
 		}
-		return valueArray
+		return cellArrayItems
 	}
 
 	return value // Value is a string
