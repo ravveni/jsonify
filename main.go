@@ -94,7 +94,7 @@ func main() {
 }
 
 func getTypedValue(value string) any {
-	intValue, err := strconv.ParseInt(value, 0, 64) // Check if value is an int
+	intValue, err := strconv.ParseInt(value, 10, 64) // Check if value is an int
 	if err == nil {
 		return intValue
 	}
