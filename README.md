@@ -11,13 +11,31 @@
 a simple csv to json converter
 ```
 
-## csv requirements
-no attention needed for basic data types (bool, float, int, string).
+## pre-requirements
+- [golang 1.22.5+](https://go.dev/doc/install)
 
-array items in csv cells **must** be separated with `|` (ex. `"item_one|item_two"`), as it prevents array assignment with comma-containing strings.
+## csv preparation
+- first row **must** contain only string headers/keys
+- no extra attention needed for most basic data types (float, int, string)
+- bool values must be either `TRUE` or `FALSE` (0 and 1 are used in int conversion)
+- array items in csv cells **must** be separated with `|` (ex. `"item_one|item_two"`), as it prevents array assignment with comma-containing strings.
 
 ## usage
+### basic
 ```
-go run jsonify input_file.csv
+$ git clone https://github.com/ravveni/jsonify
+$ cd jsonify
+$ go run jsonify input_file.csv
 ```
 `input_file.json` (output) is saved to same directory as `input_file.csv`
+
+### compiled
+```
+$ git clone https://github.com/ravveni/jsonify
+$ cd jsonify
+$ go build
+```
+create a symlink from the executable to your PATH for use system-wide
+```
+$ sudo ln -s absolute/path/to/jsonify/jsonify /usr/local/bin/jsonify
+```
