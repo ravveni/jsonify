@@ -39,3 +39,7 @@ create a symlink from the executable to your PATH for use system-wide
 ```
 $ sudo ln -s absolute/path/to/jsonify/jsonify /usr/local/bin/jsonify
 ```
+
+---
+
+example csv by [datablist/sample-csv-files](https://github.com/datablist/sample-csv-files)
