@@ -11,31 +11,31 @@
 a simple csv to json converter
 ```
 
-## pre-requirements
-- [golang 1.22.5+](https://go.dev/doc/install)
+## Pre-Requirements
+- [Go 1.22.5+](https://go.dev/doc/install)
 
-## csv preparation
-- first row **must** contain only string headers/keys
-- no extra attention needed for most basic data types (float, int, string)
-- bool values must be either `TRUE` or `FALSE` (0 and 1 are used in int conversion)
-- array items in csv cells **must** be separated with `|` (ex. `"item_one|item_two"`), as it prevents array assignment with comma-containing strings.
+## CSV Preparation
+- First row **must** contain only string headers/keys
+- No extra attention needed for most basic data types (float, int, string)
+- Bool values must be either `TRUE` or `FALSE` (0 and 1 are used in int conversion)
+- Array items in csv cells **must** be separated with `|` (ex. `"item_one|item_two"`), as it prevents array assignment with comma-containing strings.
 
-## usage
-### basic
+## Usage
+### Basic
 ```
 $ go run jsonify input_file.csv
 ```
 `input_file.json` (output) is saved to same directory as `input_file.csv`
 
-### compiled
+### Compiled
 ```
 $ go build
 ```
-create a symlink from the executable to your PATH for use system-wide
+Create a symlink from the executable to your PATH for use system-wide
 ```
 $ sudo ln -s absolute/path/to/jsonify /usr/local/bin/jsonify
 ```
 
 ---
 
-example csv by [datablist/sample-csv-files](https://github.com/datablist/sample-csv-files)
+Example csv by [datablist/sample-csv-files](https://github.com/datablist/sample-csv-files)
