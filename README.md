@@ -23,21 +23,17 @@ a simple csv to json converter
 ## usage
 ### basic
 ```
-$ git clone https://github.com/ravveni/jsonify
-$ cd jsonify
 $ go run jsonify input_file.csv
 ```
 `input_file.json` (output) is saved to same directory as `input_file.csv`
 
 ### compiled
 ```
-$ git clone https://github.com/ravveni/jsonify
-$ cd jsonify
 $ go build
 ```
 create a symlink from the executable to your PATH for use system-wide
 ```
-$ sudo ln -s absolute/path/to/jsonify/jsonify /usr/local/bin/jsonify
+$ sudo ln -s absolute/path/to/jsonify /usr/local/bin/jsonify
 ```
 
 ---
